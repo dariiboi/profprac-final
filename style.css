@@ -1,0 +1,185 @@
+:root {
+  /* --shadow-color: rgb(175, 175, 192); */
+  --shadow-color: white;
+  --link-color: rgb(10, 51, 199);
+  --main-text-color: rgb(54, 40, 81);
+  --fonts: tahoma, Helvetica, 
+  sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body{
+    letter-spacing: -.03rem;
+    font-family: var(--fonts);
+    height: auto;
+    background-color: white;
+    /* max-width: 1100px; */
+  }
+  header{
+    display: flex;
+    justify-content: space-between;
+    padding: .5%;
+  }
+  h1,h2,h3,h4,p{
+    color: var(--main-text-color);
+  }
+  .menu:not(:hover){
+    filter: blur(2rem);
+  }
+  .feed-wrapper:not(:hover){
+    filter: blur(2rem);
+  }
+  .fun-zone:not(:hover){
+    filter: blur(2rem);
+  }
+  .grid-container{
+    padding: 1rem;
+    display: grid;
+    gap: 5%;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: space-between;
+  }
+
+  .grid-column{
+    background-repeat: repeat;
+    display: grid;
+    place-items: start center;
+    position: relative;
+    border: solid rgb(197, 191, 197) .1rem;
+  }
+  .menu{
+    background-color: white;
+    border: solid rgb(255, 255, 255) .5rem;
+    /* border-radius: .8rem; */
+    display: grid;
+    place-items: left;
+    filter: drop-shadow(0 0 0.75rem var(--shadow-color));
+    width: 100%;
+
+  }
+
+  .logo>img{
+    max-width: 15rem;
+    height: auto;
+    position: absolute;
+    right: 2rem;
+}
+  header>img{
+    max-width: 10rem;
+    height: auto;
+  }
+.menu-button{
+    height: auto;
+    display: grid;
+    place-items: center;
+
+}
+.menu-button>img{
+    max-width: 6rem;
+    height: auto;
+    transform: skewY(10deg);
+  }
+.menu-button>p{
+    z-index: 3;
+    position: absolute;
+    place-items: center;
+    /* transform: skewY(10deg); */
+}
+.arrow{
+  position:absolute;
+  z-index: 2;
+  /* font-size: 10pt; */
+  top:-2%;
+}
+.feed-wrapper{
+  background-color: white;
+  /* border-radius: 1rem; */
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 0.75rem var(--shadow-color));
+  /* height:min-content; */
+  gap: 0%;
+  margin: 1rem;
+  max-width: 600px;
+  align-items: center;
+}
+.user-input{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+}
+.user-input > *{
+  border: none;
+  border: solid rgb(197, 191, 197) .1rem;
+  max-width: 550px;
+  margin: .25rem;
+  min-height: 2rem;
+}
+#post-input{
+  font-family: var(--fonts);
+  filter: drop-shadow(0 0 0.5rem var(--shadow-color));
+  
+}
+#submit-button{
+  background-color: white;
+  max-width: 50%;
+}
+.post{
+    border: solid rgb(197, 191, 197) .1rem;
+    border-bottom: 0rem; 
+    /* display: grid;
+    place-items: center; */
+    width: 100%;
+    padding: 1rem;
+    min-height: 5rem;
+    
+}
+.author{
+  display: block;
+  text-align: left;
+  color: var(--link-color);
+}
+
+.post-img{
+  max-width: 50%;
+  border: none;
+  min-width: 80px;
+}
+.fun-zone{
+  background-image: url("assets/images/dklogo.gif");
+  background-size: 50%;
+  background-repeat: round;
+  height: 100%;
+  margin: 1rem;
+
+}
+h1,h2,h3,h4,p{
+  filter: blur(0rem);
+}
+
+@media screen and (max-width: 700px) {
+  .grid-container{
+    /* if you wanna make it do the rows */
+    /* grid-template-columns: 1fr;
+    grid-template-rows: .5fr 2.5fr;
+     */
+    grid-template-columns: .5fr 2.5fr;
+  }
+  .logo>img{
+    max-width: 10rem;
+    height: auto;
+    position: fixed;
+    right: 2rem;
+  }
+  .menu-button>img{
+    max-width: 5rem;
+    height: auto;
+    transform: skewY(10deg);
+  }
+}
+
