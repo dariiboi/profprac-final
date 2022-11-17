@@ -151,11 +151,12 @@
   min-width: 80px;
 }
 .fun-zone{
-  background-image: url("assets/images/dklogo.gif");
+  background-image: url("assets/images/chains.png");
   background-size: 50%;
   background-repeat: round;
   height: 100%;
   margin: 1rem;
+  width: 80%;
 
 }
 h1,h2,h3,h4,p{
