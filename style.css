@@ -30,7 +30,7 @@
   .menu:not(:hover){
     filter: blur(2rem);
   }
-  .feed-wrapper:not(:hover){
+  #feed-wrapper:not(:hover){
     filter: blur(2rem);
   }
   .fun-zone:not(:hover){
@@ -95,7 +95,7 @@
   /* font-size: 10pt; */
   top:-2%;
 }
-.feed-wrapper{
+#feed-wrapper{
   background-color: white;
   /* border-radius: 1rem; */
   display: grid;
