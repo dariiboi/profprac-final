@@ -6,6 +6,28 @@
   --fonts: tahoma, Helvetica, 
   sans-serif;
 }
+
+@keyframes highlight {
+  100% {
+      background-color: #ACCEF7;
+      filter: blur(2rem);
+  }
+  0% {
+      background: white;
+      filter: blur(0rem);
+  }
+}
+@keyframes reveal {
+  0% {
+      background-color: #ACCEF7;
+      filter: blur(2rem);
+  }
+  100% {
+      background: white;
+      filter: blur(0rem);
+  }
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -27,11 +49,19 @@
   h1,h2,h3,h4,p{
     color: var(--main-text-color);
   }
-  .menu:not(:hover){
+  .menu:not(:hover)>*{
+    background-color: #ACCEF7;
     filter: blur(2rem);
+    animation: highlight 1s;
+
   }
-  #feed-wrapper:not(:hover){
+  :menu:hover{
+    animation: reveal 2s;
+  }
+  #feed-wrapper:not(:hover)>*{
+    background-color: #ACCEF7;
     filter: blur(2rem);
+
   }
   .fun-zone:not(:hover){
     filter: blur(2rem);

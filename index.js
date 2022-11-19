@@ -17,10 +17,12 @@ console.log(json);
 }
 
 
-var feedContents = document.getElementById('feed-wrapper').children;
-console.log(feedContents);
+var feedContents = document.getElementById('feed-wrapper').getElementsByTagName('*');
+
 if (!document.getElementById('feed-wrapper').matches(':hover')) {
+    
     for(var i=0; i<feedContents.length; i++) {
-        feedContents[i].select();
+        // console.log(feedContents[i]);
+        // feedContents[i].effect( "highlight", {color:"#669966"}, 3000 );
     }
 }
