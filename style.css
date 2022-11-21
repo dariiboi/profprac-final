@@ -50,21 +50,21 @@
     color: var(--main-text-color);
   }
   .menu:not(:hover)>*{
-    background-color: #ACCEF7;
-    filter: blur(2rem);
-    animation: highlight 1s;
+    /* background-color: #ACCEF7; */
+    /* filter: blur(2rem); */
+    /* animation: highlight 1s; */
 
   }
   :menu:hover{
-    animation: reveal 2s;
+    /* animation: reveal 2s; */
   }
   #feed-wrapper:not(:hover)>*{
-    background-color: #ACCEF7;
-    filter: blur(2rem);
+    /* background-color: #ACCEF7; */
+    /* filter: blur(2rem); */
 
   }
   .fun-zone:not(:hover){
-    filter: blur(2rem);
+    /* filter: blur(2rem); */
   }
   .grid-container{
     padding: 1rem;
@@ -137,7 +137,11 @@
   max-width: 600px;
   align-items: center;
 }
+form{
+  border: none;
+}
 .user-input{
+  border: none;
   display: flex;
   flex-direction: column;
   width: 100%;
