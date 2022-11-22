@@ -1,4 +1,6 @@
+const { response } = require("express");
 const express = require("express");
+const { request } = require("http");
 const Datastore = require("nedb");
 const app = express();
 
@@ -14,14 +16,22 @@ database.loadDatabase();
 // database.insert({name: "baahman",status: "corbisla"})
 // database.insert({name: "wooman",status: "constwan"})
 
+app.get("/api", (request, response) => {
+  database.find({}, (err, data) => {
+    if(err){
+      response.end();
+      return;
+    }
+    response.json(data);
+  });
 
+});
 app.post("/api", (request, response) => {
   console.log("I got a request!");
   console.log(request.body);
   const data = request.body;
-  response.json({
-    status: "success",
-    latitude: data.content,
-    longitude: data.password,
-  });
+  const timeStamp = Date.now();
+  data.timeStamp = timeStamp;
+  database.insert(data); 
+  response.json(data)
 });

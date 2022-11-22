@@ -164,6 +164,7 @@ form{
   max-width: 50%;
 }
 .post{
+  position: relative;
     border: solid rgb(197, 191, 197) .1rem;
     border-bottom: 0rem; 
     /* display: grid;
@@ -175,8 +176,16 @@ form{
 }
 .author{
   display: block;
+  width:50%;
   text-align: left;
   color: var(--link-color);
+}
+.timestamp{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  text-align: right;
+  font-size: x-small;
 }
 
 .post-img{
