@@ -1,8 +1,10 @@
 async function submit() {
-  var post = document.getElementById("post-input").value;
+  var content = document.getElementById("post-input").value;
   var password = document.getElementById("password").value;
-  console.log("the form submitted: %s", post);
-  const data = { post, password };
+  console.log("the form submitted: %s", content);
+  //data here stores two strings, waiting to get converted to json
+  const data = { content, password};
+  //json options turns the strings into json
   const options = {
     method: "POST",
     headers: {

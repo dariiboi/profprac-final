@@ -6,7 +6,7 @@ var server = app.listen(8080, () => {
   var port = server.address().port;
   console.log("Server started at http://localhost:%s", port);
 });
-app.use(express.static("index.html"));
+app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
 
 const database = new Datastore("database.db");
@@ -21,7 +21,7 @@ app.post("/api", (request, response) => {
   const data = request.body;
   response.json({
     status: "success",
-    latitude: data.lat,
-    longitude: data.lon,
+    latitude: data.content,
+    longitude: data.password,
   });
 });
