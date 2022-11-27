@@ -1,10 +1,15 @@
+
+getPosts();
+
+//submit the post to the server
 async function submit() {
   var postText = document.getElementById("post-input").value;
   var pseudonym = document.getElementById("pseudonym").value;
   var password = document.getElementById("password").value;
-  console.log("the form submitted: %s", postText);
+  var uploadedFile = document.getElementById("file-upload").files;
+  console.log(uploadedFile);
   //data here stores two strings, waiting to get converted to json
-  const data = { postText, pseudonym, password};
+  const data = { postText, pseudonym, password,uploadedFile};
   //json options turns the strings into json
   const options = {
     method: "POST",
@@ -25,9 +30,9 @@ async function submit() {
   } catch (err) {
     console.log(err);
   }
-
+  getPosts();
 }
-getPosts();
+
 
 //function to fetch all the posts and display them in chronological order
 async function getPosts(){
@@ -37,7 +42,6 @@ async function getPosts(){
   console.log(data);
   //for every post in the database
   for (postData of data){
-    console.log(postData.postText)
     const post = document.createElement('div');
     post.classList.add('post');
     const author = document.createElement('p');
@@ -58,9 +62,21 @@ async function getPosts(){
     post.append(author,timestamp,postText)
 
     const feedWrapper = document.getElementById("feed-wrapper");
+    // feedWrapper.remove()
     feedWrapper.append(post)
     
   }
+}
+var columns = document.getElementsByClassName('grid-column');
+for (column of columns){
+  column.classList.add("blurred");
+  column.addEventListener("mouseenter", reveal);
+}
+
+
+function reveal(event){
+  event.target.classList.remove("blurred");
+  event.target.classList.add("revealed");
 }
 
 // var feedContents = document

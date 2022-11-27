@@ -3,6 +3,12 @@ const express = require("express");
 const { request } = require("http");
 const Datastore = require("nedb");
 const app = express();
+// const { Dropzone } = require("dropzone");
+
+// let myDropzone = new Dropzone("#post-input");
+// myDropzone.on("addedfile", file => {
+//   console.log(`File added: ${file.name}`);
+// });
 
 var server = app.listen(8080, () => {
   var port = server.address().port;
@@ -26,6 +32,7 @@ app.get("/api", (request, response) => {
   });
 
 });
+
 app.post("/api", (request, response) => {
   console.log("I got a request!");
   console.log(request.body);

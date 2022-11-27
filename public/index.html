@@ -5,20 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="index.js" defer></script>
+    <!-- <script type="module" src="dropimage.js"></script> -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+
     <title>Portfolio</title>
   </head>
 
   <body>
     <div class="logo">
-      <!-- <img src="/assets/images/dklogo.gif" alt="" /> -->
+      <!-- put image for right side logo here-->
     </div>
     <header>
       <img src="/assets/images/manilachain6.gif" alt="" />
     </header>
-    <div class="grid-container">
+    <h1 class="arrow">&#11015;&#65039;</h1>
+    <div class="grid-container" id="grid-container">
       <div class="grid-column">
         <div class="menu">
           <div class="menu-button">
@@ -39,22 +43,42 @@
           </div>
         </div>
       </div>
-      <div class="grid-column">
-        <h1 class="arrow">&#11015;&#65039;</h1>
-        <div id="feed-wrapper">
-          <div class="user-input">
-            <input type="text" id="pseudonym" placeholder="pseudonym"/>
-              <textarea id="post-input" rows="4" cols="50" placeholder="Living in America!!.... there's nothing wrong"></textarea>
 
-              <input type="text" id="password" placeholder="password"/>
-              <button id="submit-button" value="submit" onclick="submit();">Submit</button>
-          </div>
+      <div class="grid-column">
+        <div class="form">
+          <input type="text" id="pseudonym" placeholder="pseudonym" />
+          <textarea
+            id="post-input"
+            rows="4"
+            cols="50"
+            placeholder="Living in America!!.... there's nothing wrong"
+          ></textarea>
+          <!-- <input type="file" name="file-upload" id="file-upload"> -->
+          <form action="/api" id="file-upload"class="dropzone"></form>
+          <input type="text" id="password" placeholder="password" />
+          <button id="submit-button" value="submit" onclick="submit();">
+            Submit
+          </button>
         </div>
+        <div id="feed-wrapper"></div>
       </div>
       <div class="grid-column">
-        <div class="fun-zone">
-        </div>
+        <div class="fun-zone"></div>
       </div>
     </div>
+    <script>
+      Dropzone.autoDiscover = false;
+      var dropzoneOptions = {
+                dictDefaultMessage: 'Drop Here!',
+                paramName: "file",
+                maxFilesize: 2, // MB
+                addRemoveLinks: true,
+                autoProcessQueue: false
+      };
+      let myDropzone = new Dropzone("#file-upload",dropzoneOptions);
+      myDropzone.on("addedfile", (file) => {
+        console.log(`File added: ${file.name}`);
+      });
+    </script>
   </body>
 </html>
