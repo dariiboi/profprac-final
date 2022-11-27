@@ -1,15 +1,14 @@
-// import Dropzone from "dropzone";
 
-import Dropzone from "dropzone";
-// Optionally, import the dropzone file to get default styling.
-// import "dropzone/dist/dropzone.css";
-// import "./style.css";
-
-const myDropzone = new Dropzone("#my-form");
-
-const output = document.querySelector("#output");
-
+// import Dropzone from 'https://unpkg.com/dropzone@5/dist/min/dropzone.min.js';
+Dropzone.autoDiscover = false;
+var dropzoneOptions = {
+          dictDefaultMessage: 'Drop Here!',
+          paramName: "file",
+          maxFilesize: 2, // MB
+          addRemoveLinks: true,
+          autoProcessQueue: false
+};
+let myDropzone = new Dropzone("#file-upload",dropzoneOptions);
 myDropzone.on("addedfile", (file) => {
-  // Add an info line about the added file for each file.
-  output.innerHTML += `<div>File added: ${file.name}</div>`;
+  console.log(`File added: ${file.name}`);
 });

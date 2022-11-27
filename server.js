@@ -39,6 +39,7 @@ app.post("/api", (request, response) => {
   const data = request.body;
   const timeStamp = Date.now();
   data.timeStamp = timeStamp;
+  //insert the data received into database.db, with timestamp
   database.insert(data); 
   response.json(data)
 });
