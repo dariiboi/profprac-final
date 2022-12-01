@@ -85,12 +85,9 @@
   }
   .menu{
     border: solid rgb(255, 255, 255) .5rem;
-    /* border-radius: .8rem; */
     display: grid;
-    place-items: left;
     filter: drop-shadow(0 0 0.75rem var(--shadow-color));
     width: 100%;
-
   }
 
   .logo>img{
@@ -104,21 +101,20 @@
     height: auto;
   }
 .menu-button{
-    height: auto;
+  width: max-content;
     display: grid;
     place-items: center;
-
+    position: relative;
 }
 .menu-button>img{
-    max-width: 6rem;
-    height: auto;
-    transform: skewY(10deg);
+    max-width: 8rem;
   }
 .menu-button>p{
     z-index: 3;
     position: absolute;
-    place-items: center;
-    /* transform: skewY(10deg); */
+    transform: scale(3,5);
+    right: 2rem;
+    color: white;
 }
 .arrow{
   position:absolute;
@@ -158,6 +154,10 @@
   font-family: var(--fonts);
   filter: drop-shadow(0 0 0.5rem var(--shadow-color));
   
+}
+.dropzone{
+  min-height:1rem !important;
+  padding:none !important;
 }
 #submit-button{
   background-color: white;
