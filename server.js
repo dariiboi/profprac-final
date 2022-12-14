@@ -3,6 +3,7 @@ const express = require("express");
 const { request } = require("http");
 const Datastore = require("nedb");
 const app = express();
+const PASSWORD = "billy123";
 // const { Dropzone } = require("dropzone");
 
 // let myDropzone = new Dropzone("#post-input");
@@ -15,7 +16,7 @@ var server = app.listen(8080, () => {
   console.log("Server started at http://localhost:%s", port);
 });
 app.use(express.static("public"));
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "10mb" }));
 
 const database = new Datastore("database.db");
 database.loadDatabase();
@@ -37,9 +38,14 @@ app.post("/api", (request, response) => {
   console.log("I got a request!");
   console.log(request.body);
   const data = request.body;
-  const timeStamp = Date.now();
-  data.timeStamp = timeStamp;
-  //insert the data received into database.db, with timestamp
-  database.insert(data); 
-  response.json(data)
+  if (data.password != PASSWORD){
+    response.json("wrong");
+  }else{
+    const timeStamp = Date.now();
+    data.timeStamp = timeStamp;
+    //insert the data received into database.db, with timestamp
+    database.insert(data); 
+    response.json(data);
+  }
+
 });

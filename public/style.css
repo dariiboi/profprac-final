@@ -1,6 +1,6 @@
 :root {
-  /* --shadow-color: rgb(175, 175, 192); */
-  --shadow-color: white;
+  --shadow-color: rgb(175, 175, 192);
+  /* --shadow-color: rgb(255, 242, 0); */
   --link-color: rgb(10, 51, 199);
   --main-text-color: rgb(54, 40, 81);
   --fonts: tahoma, Helvetica, 
@@ -9,21 +9,19 @@
 
 @keyframes highlight {
   100% {
-      background-color: #ACCEF7;
+      /* background-color: #ACCEF7; */
       filter: blur(1rem);
   }
   0% {
-      background: white;
       filter: blur(0rem);
   }
 }
 @keyframes reveal {
   0% {
-      background-color: #ACCEF7;
+      /* background-color: #ACCEF7; */
       filter: blur(1rem);
   }
   100% {
-      background: white;
       filter: blur(0rem);
   }
 }
@@ -33,45 +31,53 @@
     padding: 0;
     box-sizing: border-box;
   }
+a{
+  text-decoration: none;
+}
 
   body{
     letter-spacing: -.03rem;
     font-family: var(--fonts);
     height: auto;
-    background-color: white;
-    /* max-width: 1100px; */
+    background-color: white;  
   }
   header{
+    height: 10rem;
+  }
+  #header{
     display: flex;
-    justify-content: space-between;
-    padding: .5%;
+    flex-wrap: wrap;
+    padding: 1%;
+    /* max-width: 800px; */
+
+  }
+  #header>p{
+    /* filter:brightness(0); */
+    filter: grayscale(100);
+    filter: blur(.2rem);
+  }
+  #header>img{
+    max-width: 10rem;
+    height: auto;
+    position: absolute;
+    z-index: 3;
   }
   h1,h2,h3,h4,p{
     color: var(--main-text-color);
   }
-
-  /* uncomment this to turn on blurring */
-  /* .grid-container:not(:hover)>*{
-    background-color: #ACCEF7;
-    filter: blur(1rem);
-    animation: highlight .5s;
-  }
-  .grid-container:hover>*{
-    animation: reveal .25s;
-  }
-   */
   .blurred{
-    background-color: #ACCEF7;
+    /* background-color: #ACCEF7; */
     filter: blur(1rem);
   }
   .revealed{
     animation: reveal .25s;
   }
-
+  
   .grid-container{
+    background-color: white;
     padding: 1rem;
     display: grid;
-    gap: 5%;
+    gap: 2rem;
     grid-template-columns: 1fr 2fr 1fr;
     justify-content: space-between;
   }
@@ -81,55 +87,48 @@
     display: grid;
     place-items: start center;
     position: relative;
-    border: solid rgb(197, 191, 197) .1rem;
+
+    /* border: solid rgb(197, 191, 197) .1rem; */
   }
   .menu{
-    /* border: solid rgb(255, 255, 255) .5rem; */
-    display: grid;
-    filter: drop-shadow(0 0 0.75rem var(--shadow-color));
-    width: 100%;
-
+    /* border: solid rgb(197, 191, 197) .1rem; */
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
   }
 
   .logo>img{
     max-width: 15rem;
     height: auto;
     position: absolute;
-    right: 2rem;
+    left: 2rem;
 }
-  header>img{
-    max-width: 10rem;
-    height: auto;
-  }
+
 .menu-button{
-  width: max-content;
+  height: max-content;
+  max-width: 100%;
     display: grid;
     place-items: center;
-    position: relative;
 }
 .menu-button>img{
-    max-width: 8rem;
+    max-width: 6rem;
   }
 .menu-button>p{
     z-index: 3;
     position: absolute;
-    width: 50%;
-    text-align: left;
     font-weight:lighter;
-    transform: scale(2,2);
-    color: white;
 }
-.arrow{
-  position:absolute;
-  display: inline;
-  z-index: 2;
-  overflow: hidden;
-  top:15%;
-  left: 0%;
+#hotlink{
+  display: grid;
+  font-size: small;
 }
 #feed-wrapper{
   /* background-color: white; */
-  /* border-radius: 1rem; */
+  border: solid rgb(197, 191, 197) .1rem;
   width: 100%;
   display: grid;
   place-items: center;
@@ -140,12 +139,17 @@
   max-width: 600px;
   align-items: center;
 }
+#accordion>*{
+  border-radius: 0%;
+  padding: none !important;
+}
 .form{
   border: none;
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1rem;
+  height: min-content !important;
 }
 .form > *{
   border: none;
@@ -154,18 +158,33 @@
   margin: .25rem;
   min-height: 2rem;
 }
+
+.ui-helper-reset{
+  width: 100%;
+  border-radius: 0px;
+}
 #post-input{
   font-family: var(--fonts);
   filter: drop-shadow(0 0 0.5rem var(--shadow-color));
-  
+  height: 10rem !important;
 }
+
 .dropzone{
   min-height:1rem !important;
-  padding:none !important;
+  height: max-content !important;
+  padding: 0%!important;
+  margin: none !important;
+  position: relative!important;
+  border: none !important;
+  filter: drop-shadow(0 0 0.5rem var(--shadow-color));
+  cursor:copy !important;
 }
 #submit-button{
   background-color: white;
   max-width: 50%;
+}
+#submit-button:hover{
+  cursor:pointer;
 }
 .post{
   position: relative;
@@ -198,18 +217,28 @@
   border: none;
   min-width: 80px;
 }
-.fun-zone{
-  background-image: url("assets/images/chains.png");
+.info-zone{
+  /* border: solid rgb(197, 191, 197) .1rem; */
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  /* background-image: url("assets/images/chains.png");
   background-size: 50%;
   background-repeat: round;
-  height: 100%;
-  margin: 1rem;
-  width: 80%;
+  height: 100%; */
+  /* margin: 1rem; */
+  /* width: 100%; */
 
+}
+.VIP {
+  display: grid;
+  grid-column: 1f;
+  margin-bottom: 1rem;
 }
 h1,h2,h3,h4,p{
   filter: blur(0rem);
 }
+
 
 @media screen and (max-width: 700px) {
   .grid-container{
@@ -228,7 +257,6 @@ h1,h2,h3,h4,p{
   .menu-button>img{
     max-width: 5rem;
     height: auto;
-    transform: skewY(10deg);
   }
 }
 

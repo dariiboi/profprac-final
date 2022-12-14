@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" defer></script>
-    <!-- <script type="module" src="dropimage.js"></script> -->
+    <script src="draw-header.js" defer></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 
     <title>Portfolio</title>
@@ -18,12 +20,13 @@
 
   <body>
     <div class="logo">
-      <!-- put image for right side logo here-->
+      <img src="/assets/images/carrionwanghd.png" alt="carrion wang logo">
     </div>
     <header>
-      <img src="/assets/images/manilalocked3.jpg" alt="" />
+
+      <div id="header">
+      </div>
     </header>
-    <h1 class="arrow">🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿🫵🏻🫵🏾🫵🏼🫵🏿</h1>
     <div class="grid-container" id="grid-container">
       <div class="grid-column">
         <div class="menu">
@@ -43,30 +46,67 @@
             <img src="/assets/images/manilamenu.jpg" alt="" />
             <p>Buy</p>
           </div>
+          <p>recent posts</p>
+          <div id="hotlink"></div>
         </div>
       </div>
 
       <div class="grid-column">
-        <div class="form">
-          <input type="text" id="pseudonym" placeholder="pseudonym" />
-          <textarea
-            id="post-input"
-            rows="4"
-            cols="50"
-            placeholder="Living in America!!.... there's nothing wrong"
-          ></textarea>
-          <!-- <input type="file" name="file-upload" id="file-upload"> -->
-          <form action="/api" id="file-upload"class="dropzone"></form>
-          <input type="text" id="password" placeholder="password" />
-          <button id="submit-button" value="submit" onclick="submit();">
-            Submit
-          </button>
+
+        <div  id="accordion">
+          <h3>VIP Only</h3>
+          <div class="form">
+            <input type="text" id="pseudonym" placeholder="pseudonym" />
+            <textarea
+              id="post-input"
+              rows="4"
+              cols="50"
+              placeholder="post here and now"
+            ></textarea>
+            <form action="/api" id="file-upload"class="dropzone"></form>
+            <input type="text" id="password" placeholder="password" />
+            <button id="submit-button" value="submit" onclick="submit();">
+              Submit
+            </button>
+            <p id="result" style="border:0px!important"></p>
+          </div>
         </div>
+        
         <div id="feed-wrapper"></div>
       </div>
       <div class="grid-column">
-        <div class="fun-zone"></div>
+        <div id="info-zone"class="info-zone">
+          <div class="VIP">
+            <h5>VIP list - December 2022</h5>
+            <a href="">coldsteel</a>
+            <a href="">willcotton</a>
+            <a href="">kali</a>
+            <a href="">pussy_serf</a>
+            <a href="">axiom20033</a>
+          </div>
+          <div>
+            <h5>about carrion.wang</h5>
+            <p>We music website. Modern music critique dead, culture also dead. People only like certain music, not fair. Everyone should listen to whatever want, without being judged.
+
+              Also, everyone same these days. We want to help people be themselves, make own music instead of copying popular.
+              
+              We have website where anyone share music, people can listen without being mean. Also have fun stuff like quizzes and games to help learn about different kinds of music.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
+    <script>
+    var icons = {
+        header: "ui-icon-circle-arrow-e",
+        activeHeader: "ui-icon-circle-arrow-s"
+    };
+$("#accordion").accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: "fill",
+        icons: icons
+    });
+    </script>
   </body>
 </html>

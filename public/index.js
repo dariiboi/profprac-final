@@ -14,18 +14,21 @@ let myDropzone = new Dropzone("#file-upload", dropzoneOptions);
 myDropzone.on("addedfile", (file) => {
   console.log(`File added: ${file.name}`);
 });
-
 //submit the post to the server
 async function submit() {
-
-
-  var postText = document.getElementById("post-input").value;
   var pseudonym = document.getElementById("pseudonym").value;
+  var postText = document.getElementById("post-input").value;
   var password = document.getElementById("password").value;
-  // var uploadedFile = document.getElementById("file-upload").files;
-  console.log(myDropzone.files);
-  //data here stores two strings, waiting to get converted to json
-
+  if(pseudonym == ""){
+    document.getElementById("result").textContent="enter a pseudonym or username or something";
+    document.getElementById("result").setAttribute("style","color:orange;border:0px");
+    return;
+  }
+  if(postText == ""){
+    document.getElementById("result").textContent="enter text or a link or anything";
+    document.getElementById("result").setAttribute("style","color:orange;border:0px");
+    return;
+  }
   //json options turns the strings into json
   var uploads = [];
   if (myDropzone.files.length > 0) {
@@ -52,11 +55,24 @@ async function submit() {
   try {
     const response = await fetch("/api", options);
     console.log(response);
+
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
     const result = await response.json();
     console.log(result);
+    if (result == "wrong"){
+      console.log(result);
+      document.getElementById("result").textContent="wrong password";
+      document.getElementById("result").setAttribute("style","color:red;border:0px");
+    }else{
+      document.getElementById("result").textContent="success";
+      document.getElementById("result").setAttribute("style","color:green;border:0px");
+      document.getElementById('post-input').value="";
+      document.getElementById('password').value="";
+      document.getElementById('pseudonym').value="";
+      myDropzone.removeAllFiles();
+    }
   } catch (err) {
     console.log(err);
   }
@@ -68,6 +84,7 @@ async function getPosts() {
   const feedWrapper = document.getElementById("feed-wrapper");
   //delete all the currently rendered posts
   removeAllChildNodes(feedWrapper);
+  removeAllChildNodes(document.getElementById('hotlink'));
   const response = await fetch("/api");
   //data is a list of json objects
   const data = await response.json();
@@ -95,8 +112,14 @@ async function getPosts() {
     dateString = dateString.toLocaleString();
     timestamp.textContent = dateString;
     postText.textContent = postData.postText;
-    postText.textContent = postData.postText;
     post.append(author, timestamp, postText);
+    //make abbreveiated version of posttext to put in menu
+    const abbrevPostText = postData.postText.slice(0,18);
+    post.setAttribute("id",abbrevPostText);
+    let hotLink = document.createElement("a");
+    hotLink.textContent = abbrevPostText;
+    hotLink.setAttribute("href","#"+abbrevPostText);
+    document.getElementById('hotlink').append(hotLink);
     for (i of postData.uploads){
 
       if(String(i.dataURL).includes("data:image/") ){
