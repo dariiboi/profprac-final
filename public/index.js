@@ -117,7 +117,7 @@ async function getPosts() {
     const abbrevPostText = postData.postText.slice(0,18);
     post.setAttribute("id",abbrevPostText);
     let hotLink = document.createElement("a");
-    hotLink.textContent = abbrevPostText;
+    hotLink.textContent = abbrevPostText+"...";
     hotLink.setAttribute("href","#"+abbrevPostText);
     document.getElementById('hotlink').append(hotLink);
     for (i of postData.uploads){
