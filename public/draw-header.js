@@ -23,6 +23,6 @@ window.onload = function() {
     const fileName = "https://raw.githubusercontent.com/dariiboi/imgs-profprac/main/" + imgNum + "0.png";
     const imgElement = document.createElement("img");
     imgElement.setAttribute('src', fileName);
-    imgElement.setAttribute('style', "filter: brightness(2);mix-blend-mode: darken;z-index:-2;position:absolute;max-width:10rem;"+ "right:2rem");
+    imgElement.setAttribute('style', "filter: brightness(2);mix-blend-mode: darken;z-index:-2;position:absolute;max-width:10rem;"+ "right:6%");
     headerElement.append(imgElement);
   }
