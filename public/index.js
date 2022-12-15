@@ -4,7 +4,7 @@ getPosts();
 //dropzone setup
 Dropzone.autoDiscover = false;
 var dropzoneOptions = {
-  dictDefaultMessage: "Drop Here!",
+  dictDefaultMessage: "🔗",
   paramName: "file",
   maxFilesize: 2, // MB
   addRemoveLinks: true,
