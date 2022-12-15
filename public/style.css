@@ -95,11 +95,10 @@ a{
   .menu{
     /* border: solid rgb(197, 191, 197) .1rem; */
     display: flex;
-    padding: 1rem;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     position: fixed;
   }
 
@@ -114,7 +113,10 @@ a{
   height: max-content;
   max-width: 100%;
     display: grid;
+    margin: .25rem;
     place-items: center;
+    border: solid rgb(197, 191, 197) .1rem;
+    padding: .25rem;
 }
 .menu-button>img{
     max-width: 6rem;
