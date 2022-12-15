@@ -58,7 +58,8 @@ a{
   }
   #header>img{
     max-width: 10rem;
-    height: auto;
+    width:100%;
+    /* height: auto; */
     position: absolute;
     z-index: 3;
   }
@@ -103,7 +104,7 @@ a{
   }
 
   .logo>img{
-    max-width: 15rem;
+    max-width: 20rem;
     height: auto;
     position: absolute;
     left: 2rem;
@@ -120,7 +121,6 @@ a{
   }
 .menu-button>p{
     z-index: 3;
-    position: absolute;
     font-weight:lighter;
 }
 #hotlink{
