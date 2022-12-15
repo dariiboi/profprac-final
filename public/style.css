@@ -225,6 +225,7 @@ a{
   max-width: 50%;
   border: none;
   min-width: 80px;
+  padding: 1rem;
 }
 .info-zone{
   /* border: solid rgb(197, 191, 197) .1rem; */
