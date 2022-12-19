@@ -15,7 +15,7 @@ var server = app.listen(8080, () => {
   var port = server.address().port;
   console.log("Server started at http://localhost:%s", port);
 });
-app.use(express.static("public"));
+app.use(express.static("/public"));
 app.use(express.json({ limit: "10mb" }));
 
 const database = new Datastore("database.db");
