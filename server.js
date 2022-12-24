@@ -15,7 +15,7 @@ var server = app.listen(8080, () => {
   var port = server.address().port;
   console.log("Server started at http://localhost:%s", port);
 });
-app.use(express.static("/public"));
+app.use(express.static(__dirname+"/public"));
 app.use(express.json({ limit: "10mb" }));
 
 const database = new Datastore("database.db");
@@ -23,13 +23,32 @@ database.loadDatabase();
 // database.insert({name: "baahman",status: "corbisla"})
 // database.insert({name: "wooman",status: "constwan"})
 
-app.get("/api", (request, response) => {
+app.post("/load", (request, response) => {
+  const settings = request.body;
+  if(settings.prevPosts != 0){
+    console.log('scroll!')
+  }
+  console.log(settings);
   database.find({}, (err, data) => {
     if(err){
       response.end();
       return;
     }
-    response.json(data);
+    let posts = [];
+    data.sort(function(x, y){
+      return x.timeStamp -y.timeStamp;
+    })
+    console.log(data.length);
+    //load n posts based on how many posts were previously on the page
+    for (let i = data.length-settings.prevPosts-1;i>data.length-settings.prevPosts-settings.numPosts;i--){
+      console.log(i);
+      posts.push(data[i]);
+      if(i<=0){
+        return;
+      }
+    }
+    console.log(posts.length);
+    response.json(posts);
   });
 
 });

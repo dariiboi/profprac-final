@@ -1,5 +1,5 @@
 //load all posts from Database
-getPosts();
+getPosts(10,false);
 
 //dropzone setup
 Dropzone.autoDiscover = false;
@@ -76,22 +76,38 @@ async function submit() {
   } catch (err) {
     console.log(err);
   }
-  getPosts();
+  getPosts(10,false);
 }
 
 //function to fetch and reload all the posts and display them in chronological order
-async function getPosts() {
+async function getPosts(numPosts,scrolled) {
+
   const feedWrapper = document.getElementById("feed-wrapper");
-  //delete all the currently rendered posts
-  removeAllChildNodes(feedWrapper);
-  removeAllChildNodes(document.getElementById('hotlink'));
-  const response = await fetch("/api");
+  //on fresh page load or new post, reload most recent posts
+  if (!scrolled){
+    //delete all the currently rendered posts
+    removeAllChildNodes(feedWrapper);
+    removeAllChildNodes(document.getElementById('hotlink'));
+  }
+  //store the current # of posts rendered on page (0 unless scroll-loaded)
+  const prevPosts = document.getElementsByClassName("post").length;
+  console.log(prevPosts);
+//in the get request, specify how many posts to request (use the current amount of div elements as the index start)
+  const settings = {numPosts,prevPosts};
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(settings),
+  };
+  const response = await fetch("/load",options);
   //data is a list of json objects
   const data = await response.json();
   //for every post in the database
-  data.sort(function(x, y){
-    return y.timeStamp - x.timeStamp;
-  })
+  // data.sort(function(x, y){
+  //   return y.timeStamp - x.timeStamp;
+  // })
   console.log(data)
   for (postData of data) {
     //create the post wrapper div
@@ -148,13 +164,10 @@ function removeAllChildNodes(parent) {
       parent.removeChild(parent.firstChild);
   }
 }
-// var feedContents = document
-//   .getElementById("feed-wrapper")
-//   .getElementsByTagName("*");
 
-// if (!document.getElementById("feed-wrapper").matches(":hover")) {
-//   for (var i = 0; i < feedContents.length; i++) {
-//     // console.log(feedContents[i]);
-//     // feedContents[i].effect( "highlight", {color:"#669966"}, 3000 );
-//   }
-// }
+window.onscroll = function(ev) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      // you're at the bottom of the page
+      getPosts(10,true);
+  }
+};
