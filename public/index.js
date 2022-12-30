@@ -120,15 +120,16 @@ async function getPosts(numPosts,scrolled) {
     timestamp.classList.add("timestamp");
     const postText = document.createElement("p");
     postText.classList.add("post-text");
-
-
+    const postId = document.createElement("p");
+    postId.classList.add("post-id");
+    postId.textContent = postData._id;
     author.textContent = postData.pseudonym;
     var dateString = new Date(postData.timeStamp);
     dateString.setSeconds(0, 0);
     dateString = dateString.toLocaleString();
     timestamp.textContent = dateString;
     postText.textContent = postData.postText;
-    post.append(author, timestamp, postText);
+    post.append(author, timestamp, postText,postId);
     //make abbreveiated version of posttext to put in menu
     const abbrevPostText = postData.postText.slice(0,18);
     post.setAttribute("id",abbrevPostText);
@@ -166,8 +167,18 @@ function removeAllChildNodes(parent) {
 }
 
 window.onscroll = function(ev) {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      // you're at the bottom of the page
-      getPosts(10,true);
-  }
+  debounce(handleScroll, 100);
 };
+
+function debounce(method, delay) {
+  clearTimeout(method._tId);
+  method._tId= setTimeout(function(){
+      method();
+  }, delay);
+}
+function handleScroll(){
+  if ((window.innerHeight + window.scrollY) >= document.getElementById("feed-wrapper").offsetHeight) {
+    // you're at the bottom of the page
+    getPosts(10,true);
+}
+}

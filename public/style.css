@@ -222,7 +222,13 @@ a{
   color: rgba(22, 109, 195, 0.1);
   font-style: bold;
 }
-
+.post-id{
+  position: absolute;
+  display: inline;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  color: rgba(22, 109, 195, 0.1);
+}
 .post-img{
   max-width: 50%;
   border: none;

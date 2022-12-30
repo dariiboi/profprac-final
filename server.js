@@ -38,16 +38,18 @@ app.post("/load", (request, response) => {
     data.sort(function(x, y){
       return x.timeStamp -y.timeStamp;
     })
-    console.log(data.length);
+    console.log("there are:"+data.length+" posts in the db");
     //load n posts based on how many posts were previously on the page
-    for (let i = data.length-settings.prevPosts-1;i>data.length-settings.prevPosts-settings.numPosts;i--){
-      console.log(i);
-      posts.push(data[i]);
-      if(i<=0){
-        return;
+    for (let i = data.length-settings.prevPosts;i>data.length-settings.prevPosts-settings.numPosts;i--){
+      //stop appending posts after it reaches the last post
+      if(i<0){
+        break;
       }
+      console.log(i);
+      posts.push(data[i-1]);
+
     }
-    console.log(posts.length);
+    console.log("sending "+posts.length+ " posts");
     response.json(posts);
   });
 
